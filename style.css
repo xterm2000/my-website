@@ -1,0 +1,52 @@
+body {
+  background-color: honeydew;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Tahoma", italic;
+}
+
+div.class1 {
+  color: grey;
+  
+}
+
+iframe.myclass {
+  
+    background-color: honeydew;
+}
+
+p {
+  /* Text */
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+   
+   /* Margins*/
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  width: 30em;
+  
+  /* Colors */
+  color: #000999;
+}
+
+img {
+  
+  width: 100px;
+  height: auto;
+  border: 10px solid black;
+  object-fit: contain;
+    
+  border-radius: 10%;
+  padding: 10px;
+  min-width: 50%;
+  max-width: 80%;
+  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
