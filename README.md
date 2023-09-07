@@ -1,3 +1,9 @@
-# amanita-website
-my personal website 
-https://mitek.netlify.app/
+# my personal website 
+
+https://mitek.netlify.app/<br>
+https://m535.xyz/
+
+- host: Netlify
+- domain: GoDaddy
+- design: me
+
