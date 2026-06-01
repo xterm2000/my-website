@@ -1,29 +1,271 @@
-body {
-  background-color: #272822;
-  color: #f8f8f2;
+/* ============================================================
+   style.css — /home/mitek personal website
+   All styling lives here. Customize via the custom properties
+   in section 1, and the palette will update everywhere.
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. CUSTOM PROPERTIES
+   ------------------------------------------------------------ */
+:root {
+  /* Monokai palette */
+  --color-bg:        #272822;
+  --color-fg:        #f8f8f2;
+  --color-comment:   #75715e;
+  --color-key:       #a6e22e;
+  --color-value:     #e6db74;
+  --color-list-dash: #66d9e8;
+  --color-accent:    #a1efe4;
+  --color-colon:     #f92672;
+  --color-muted:     #75715e;
+  --color-border:    #3e3d32;
+  --color-card:      #2d2e27;
+
+  /* Typography */
+  --font-mono:       'JetBrains Mono', 'Courier New', monospace;
+  --font-size-base:  14px;
+  --font-size-title: 1.5rem;
+  --line-height:     1.75;
+
+  /* Layout */
+  --container-max:   700px;
+  --container-pad:   1.75rem;
 }
 
-h1 {
-  color: #f8f8f2;
-  text-align: left;
-  font-family: 'Courier New', Courier, monospace;
-  margin: 10px 0;
-}
 
-p.text, div.text {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  padding-left: 30px;
-  color: #a1efe4;
-  margin: 5px 0;
-}
-
-#container {
-  position: relative;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* ------------------------------------------------------------
+   2. RESET / BASE
+   ------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  overflow: hidden;
-  background-color: #272822;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  animation: page-fade-in 0.4s ease-out;
+}
+
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Custom scrollbar (Webkit / Blink) */
+::-webkit-scrollbar             { width: 8px; }
+::-webkit-scrollbar-track       { background: var(--color-bg); }
+::-webkit-scrollbar-thumb       { background: var(--color-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+
+/* ------------------------------------------------------------
+   3. LAYOUT
+   ------------------------------------------------------------ */
+.site-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 3rem var(--container-pad) 5rem;
+}
+
+
+/* ------------------------------------------------------------
+   4. SITE HEADER
+   ------------------------------------------------------------ */
+.site-header {
+  margin-bottom: 2rem;
+}
+
+.site-title {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  color: var(--color-fg);
+  letter-spacing: 0.04em;
+}
+
+/* Three dots before the title, like a terminal window chrome */
+.site-title::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-key);
+  border-radius: 50%;
+  margin-right: 52px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  box-shadow: 18px 0 0 var(--color-value), 36px 0 0 var(--color-colon);
+}
+
+
+/* ------------------------------------------------------------
+   5. PROMPT SECTION — "hi there" + IP + cursor
+   ------------------------------------------------------------ */
+.prompt-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 2.5rem;
+}
+
+.prompt-arrow {
+  color: var(--color-key);
+}
+
+.prompt-text {
+  color: var(--color-accent);
+}
+
+.prompt-separator {
+  color: var(--color-muted);
+}
+
+.prompt-label {
+  color: var(--color-muted);
+}
+
+.prompt-ip {
+  color: var(--color-value);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.prompt-ip--resolved {
+  opacity: 1;
+}
+
+.ip-loading {
+  color: var(--color-muted);
+}
+
+/* Blinking block cursor */
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background-color: var(--color-fg);
+  vertical-align: text-bottom;
+  margin-left: 0.1em;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+
+/* ------------------------------------------------------------
+   6. YAML BLOCK
+   ------------------------------------------------------------ */
+.yaml-block {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-list-dash);
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
+  animation: slide-in 0.5s ease-out 0.1s both;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.yaml-block p {
+  white-space: pre;
+  line-height: var(--line-height);
+}
+
+.yaml-blank {
+  min-height: 0.75rem;
+  line-height: 1;
+}
+
+/* YAML token classes */
+.yaml-comment    { color: var(--color-comment); font-style: italic; }
+.yaml-key        { color: var(--color-key); }
+.yaml-colon      { color: var(--color-colon); }
+.yaml-value      { color: var(--color-value); }
+.yaml-dash       { color: var(--color-list-dash); }
+.yaml-list-value { color: var(--color-fg); }
+
+.yaml-list {
+  padding-left: 1rem;
+}
+
+
+/* ------------------------------------------------------------
+   7. GITHUB CORNER
+   ------------------------------------------------------------ */
+.github-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  line-height: 0;
+}
+
+.github-corner__bg {
+  fill: var(--color-fg);
+}
+
+.octo-arm,
+.octo-body {
+  fill: var(--color-bg);
+}
+
+.octo-arm {
+  transform-origin: 130px 106px;
+}
+
+.github-corner:hover .octo-arm,
+.github-corner:focus .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%,  100% { transform: rotate(0);      }
+  20%, 60%  { transform: rotate(-25deg); }
+  40%, 80%  { transform: rotate(10deg);  }
+}
+
+
+/* ------------------------------------------------------------
+   8. RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .site-container {
+    padding: 2rem var(--container-pad) 4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  :root {
+    --font-size-base: 13px;
+    --container-pad:  1rem;
+  }
+
+  .yaml-block {
+    padding: 1.25rem 1.25rem;
+  }
+
+  /* Hide cursor on very small screens */
+  .cursor { display: none; }
+
+  /* Wave on page load instead of hover */
+  .github-corner:hover .octo-arm { animation: none; }
+  .github-corner .octo-arm       { animation: octocat-wave 560ms ease-in-out; }
 }

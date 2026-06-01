@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "website",
+      "runtimeExecutable": "powershell.exe",
+      "runtimeArgs": ["-Command", "& { $listener = [System.Net.HttpListener]::new(); $listener.Prefixes.Add('http://localhost:3000/'); $listener.Start(); while($true){ $ctx=$listener.GetContext(); $req=$ctx.Request; $res=$ctx.Response; $path='C:\\Users\\dimitrya\\Desktop\\my-code\\my-website'+$req.Url.LocalPath; if($path -eq 'C:\\Users\\dimitrya\\Desktop\\my-code\\my-website/'){ $path='C:\\Users\\dimitrya\\Desktop\\my-code\\my-website\\index.html' }; if(Test-Path $path -PathType Leaf){ $bytes=[System.IO.File]::ReadAllBytes($path); $res.OutputStream.Write($bytes,0,$bytes.Length) } else { $res.StatusCode=404 }; $res.Close() } }"],
+      "port": 3000
+    }
+  ]
+}
