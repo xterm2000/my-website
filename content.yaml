@@ -1,0 +1,50 @@
+sections:
+  - header: |
+      # ✡️🕉️
+      About Me:
+    fields:
+      firstName: Mitya
+      lastName: Ahanchonok
+      yearOfBirth: 1980
+      placeOfBirth: "Moscow, USSR"
+      currentLocation: "Jersey City, NJ, United States"
+      languages:
+      - English
+      - Russian
+      - Hebrew
+
+  - header: "Education:"    
+    fields:
+      degree: "Bachelor of Science (B.Sc.)"
+      name: Hadassah Academic College        
+      fieldOfStudy: "Computer Science 💻"
+      studyPeriod: "2004-2008"
+      location: "Jerusalem, Israel"
+
+  - header: "Certifications:"
+    list:
+    - fields:
+        certificate: "CKA ☸️"
+        org: Linux Foundation
+        date: "Sep 2023"
+    - fields:
+        certificate: "CKAD ☸️"
+        org: Linux Foundation
+        date: "Mar 2026"
+    - fields:
+        certificate: "Solutions Architect Associate ☁️"
+        org: AWS
+        date: "Apr 2026"
+
+  - header: "Hobbies:"
+    list:
+      - "🎼 music production"
+      - "📷 photography"
+      - "🚲 bicycle"
+      - "🎾 tennis"
+      - "🛠️ diy"
+
+  - header: "Contact Me:"
+    items:
+      - tg: "@dimitrius2000"
+      - phone: "303-515-9105"

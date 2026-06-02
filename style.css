@@ -12,7 +12,7 @@
   /* Monokai palette */
   --color-bg:        #272822;
   --color-fg:        #f8f8f2;
-  --color-comment:   #75715e;
+  --color-comment:   #3ae3fa;
   --color-key:       #a6e22e;
   --color-value:     #e6db74;
   --color-list-dash: #66d9e8;
@@ -206,40 +206,47 @@ body {
   padding-left: 1rem;
 }
 
+.yaml-list-cont {
+  padding-left: 1rem; /* aligns with .yaml-list; the leading "  " in content handles sub-indent */
+}
+
 
 /* ------------------------------------------------------------
-   7. GITHUB CORNER
+   7. GITHUB LINK
    ------------------------------------------------------------ */
-.github-corner {
+.github-link {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 1.25rem;
+  right: 1.25rem;
   z-index: 100;
-  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.github-corner__bg {
-  fill: var(--color-fg);
+.github-link:hover,
+.github-link:focus {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  outline: none;
 }
 
-.octo-arm,
-.octo-body {
+.github-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--color-muted);
+  transition: fill 0.2s ease;
+}
+
+.github-link:hover .github-icon,
+.github-link:focus .github-icon {
   fill: var(--color-bg);
-}
-
-.octo-arm {
-  transform-origin: 130px 106px;
-}
-
-.github-corner:hover .octo-arm,
-.github-corner:focus .octo-arm {
-  animation: octocat-wave 560ms ease-in-out;
-}
-
-@keyframes octocat-wave {
-  0%,  100% { transform: rotate(0);      }
-  20%, 60%  { transform: rotate(-25deg); }
-  40%, 80%  { transform: rotate(10deg);  }
 }
 
 
@@ -265,7 +272,8 @@ body {
   /* Hide cursor on very small screens */
   .cursor { display: none; }
 
-  /* Wave on page load instead of hover */
-  .github-corner:hover .octo-arm { animation: none; }
-  .github-corner .octo-arm       { animation: octocat-wave 560ms ease-in-out; }
+  .github-link {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
 }

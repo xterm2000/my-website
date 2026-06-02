@@ -1,0 +1,7 @@
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Local dev server
+serve.bat
+serve.ps1
